@@ -103,6 +103,7 @@ Build the following pages on every website project unless the project brief expl
 - Global Header
 - **Color contrast build gate** — scaffold the web-accessibility skill's bundled `contrast-check.mjs`, contrast manifest, and CI workflow into the site; wire the script as a `prebuild` step and a required CI check so any pairing below its WCAG AA target (or an invisible same-color token) blocks `next build` and the PR
 - **IndexNow** — implement IndexNow ping on every content publish or ISR revalidation to push URL discovery to Bing (and indirectly Google via Bing's sharing agreement) without waiting for passive crawl scheduling
+- **Config integrity gate** — `.claude/scripts/validate-claude-config.mjs` verifies that every `@`-import in this file and every `references/`/`assets/` path inside each skill resolves to a real file. It runs at session start via the `SessionStart` hook in `.claude/settings.json` and as a required CI check, so a broken reference is surfaced immediately instead of failing silently mid-build
 
 ---
 
