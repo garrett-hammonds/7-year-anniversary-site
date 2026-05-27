@@ -52,8 +52,11 @@
 ### Distinguishable (SC 1.4.x — Levels A & AA)
 - [ ] **Color must never be the only means** of conveying information — always pair with text, icons, or patterns (SC 1.4.1)
 - [ ] Audio that plays automatically for more than 3 seconds must have a mechanism to pause or stop it (SC 1.4.2)
-- [ ] **Normal text:** minimum contrast ratio of **4.5:1** between text and background (SC 1.4.3)
-- [ ] **Large text** (18pt+ or 14pt+ bold): minimum contrast ratio of **3:1** (SC 1.4.3)
+- [ ] **Verify contrast by computation, not by eye** — resolve every color (including `var()` tokens, `currentColor`, and named colors) to a literal sRGB value, then run the contrast script in `references/color-contrast-verification.md`. Eyeballing is how invisible same-color headings and unchecked hover states slip through.
+- [ ] **Check every state and pairing** — body text, all heading levels, links/`:visited`, placeholders, and every interactive control in default/`:hover`/`:focus`/`:active`/`:disabled`/selected states; text over images uses the lightest and darkest pixel it can sit over
+- [ ] **Brand rules never override contrast** — if a brand or Style Guide color computes below the required ratio, adjust the color until it passes in every context and note the substitution
+- [ ] **Normal text:** minimum contrast ratio of **4.5:1** between text and background, confirmed by computed ratio (SC 1.4.3)
+- [ ] **Large text** (18pt+ or 14pt+ bold): minimum contrast ratio of **3:1**, confirmed by computed ratio (SC 1.4.3)
 - [ ] Text must remain readable when the browser is zoomed to **200%** without loss of content or function (SC 1.4.4)
 - [ ] Images of text are prohibited for decorative or stylistic purposes — use actual text with CSS styling (SC 1.4.5); only acceptable when essential (logos, branded wordmarks)
 - [ ] **Non-text contrast:** UI components (button borders, input field outlines, focus indicators, icons) must meet a **3:1** contrast ratio against adjacent colors (SC 1.4.11)
