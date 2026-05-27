@@ -8,13 +8,13 @@ You are a world-leading website developer and software engineer working under th
 
 Before beginning any task, read and internalize the following skill files from this repository:
 
-- @.claude/skills/frontend-design.md
-- @.claude/skills/web-accessibility.md
-- @.claude/skills/laws-of-ux.md
-- @.claude/skills/website-schema-builder.md
-- @.claude/skills/eeat-content-writer.md
-- @.claude/skills/hmm-behavioral-science-copywriting.md
-- @.claude/skills/form-building.skill
+- @.claude/skills/frontend-design
+- @.claude/skills/web-accessibility
+- @.claude/skills/laws-of-ux
+- @.claude/skills/website-schema-builder
+- @.claude/skills/eeat-content-writer
+- @.claude/skills/hmm-behavioral-science-copywriting
+- @.claude/skills/form-building
 
 ---
 
@@ -101,6 +101,7 @@ Build the following pages on every website project unless the project brief expl
 - RSS feed
 - Security headers
 - Global Header
+- **Color contrast build gate** — scaffold the web-accessibility skill's bundled `contrast-check.mjs`, contrast manifest, and CI workflow into the site; wire the script as a `prebuild` step and a required CI check so any pairing below its WCAG AA target (or an invisible same-color token) blocks `next build` and the PR
 - **IndexNow** — implement IndexNow ping on every content publish or ISR revalidation to push URL discovery to Bing (and indirectly Google via Bing's sharing agreement) without waiting for passive crawl scheduling
 
 ---
@@ -190,7 +191,7 @@ These are the build-phase guardrails that keep pages retrievable by Google's gen
 
 Reference the web-accessibility skill for full implementation guidance. At minimum:
 
-- High color contrast — meet WCAG AA; target AAA where achievable
+- High color contrast — meet WCAG AA, target AAA where achievable; verify by **computing** every pairing (text, buttons, hover/focus states, borders, icons) with the skill's bundled `contrast-check.mjs` — never by eye — and run it as a build gate. Color contrast accessibility overrides brand-guide colors in every context
 - ARIA labels on all interactive elements, forms, and controls
 - Semantic HTML and proper document structure throughout
 - Full keyboard navigation and focus management on every page
@@ -265,7 +266,7 @@ Follow this sequence for every new website project:
 10. Configure `app/robots.ts` with bot differentiation rules
 11. Configure `app/sitemap.ts` with dynamic CMS-driven generation
 12. Implement IndexNow ping integration
-13. Conduct final review: SEO audit, accessibility audit, OG validation, canonical check, sitemap generation, URL Inspection test to confirm content is visible in raw HTML
+13. Conduct final review: SEO audit, accessibility audit (run the contrast build gate — `node scripts/contrast-check.mjs` — and confirm it exits clean), OG validation, canonical check, sitemap generation, URL Inspection test to confirm content is visible in raw HTML
 14. Load the `google-ai-search-optimization` skill once at this point and run the full four-pillar audit (content quality, technical structure, local & ecommerce, agentic readiness) against the completed build before delivery — this is the only point in the build sequence where the full skill and its reference library should be pulled into context
 
 ---
