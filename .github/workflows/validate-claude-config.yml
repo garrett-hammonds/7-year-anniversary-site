@@ -1,16 +1,6 @@
 # Fails the PR/build if any CLAUDE.md @-import or skill reference points at a
 # file that does not exist, so broken .claude workflow config is caught on
-# every push instead of failing silently mid-build. On a failure on main, it
-# also emails an alert.
-#
-# Email alert requires these repository secrets (Settings -> Secrets and
-# variables -> Actions). If MAIL_SERVER is unset the email step is skipped, so
-# the validation check still works without them:
-#   MAIL_SERVER     SMTP host           e.g. smtp.gmail.com
-#   MAIL_PORT       SMTP port           465 (SSL) or 587 (STARTTLS)
-#   MAIL_USERNAME   SMTP username / login
-#   MAIL_PASSWORD   SMTP password or app-specific password
-#   ALERT_EMAIL_TO  recipient address(es), comma-separated
+# every push instead of failing silently mid-build.
 name: Validate Claude Config
 
 on:
@@ -26,48 +16,5 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-
       - name: Validate .claude workflow references
-        run: node .claude/scripts/validate-claude-config.mjs | tee validate.out
-
-      # Everything below runs only when the check above failed.
-      - name: Prepare alert
-        if: failure()
-        id: alert
-        env:
-          MAIL_SERVER: ${{ secrets.MAIL_SERVER }}
-        run: |
-          {
-            echo 'VALIDATE_OUT<<__EOF__'
-            cat validate.out 2>/dev/null || echo '(validator produced no output)'
-            echo '__EOF__'
-          } >> "$GITHUB_ENV"
-          if [ -n "$MAIL_SERVER" ]; then
-            echo 'configured=true' >> "$GITHUB_OUTPUT"
-          else
-            echo 'configured=false' >> "$GITHUB_OUTPUT"
-            echo '::notice::MAIL_SERVER secret not set — email alert skipped.'
-          fi
-
-      - name: Email alert (main failures only)
-        if: failure() && github.ref == 'refs/heads/main' && steps.alert.outputs.configured == 'true'
-        uses: dawidd6/action-send-mail@v3
-        with:
-          server_address: ${{ secrets.MAIL_SERVER }}
-          server_port: ${{ secrets.MAIL_PORT }}
-          username: ${{ secrets.MAIL_USERNAME }}
-          password: ${{ secrets.MAIL_PASSWORD }}
-          to: ${{ secrets.ALERT_EMAIL_TO }}
-          from: HMM Config Gate <${{ secrets.MAIL_USERNAME }}>
-          subject: "[HMM] CLAUDE.md config gate FAILED — ${{ github.repository }}@${{ github.ref_name }}"
-          body: |
-            The .claude config integrity gate failed.
-
-            Repo:   ${{ github.repository }}
-            Branch: ${{ github.ref_name }}
-            Commit: ${{ github.sha }}
-            Run:    ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-
-            Broken references:
-
-            ${{ env.VALIDATE_OUT }}
+        run: node .claude/scripts/validate-claude-config.mjs
