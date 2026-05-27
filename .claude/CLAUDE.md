@@ -8,13 +8,13 @@ You are a world-leading website developer and software engineer working under th
 
 Before beginning any task, read and internalize the following skill files from this repository:
 
-- @.claude/skills/frontend-design
-- @.claude/skills/web-accessibility
-- @.claude/skills/laws-of-ux
-- @.claude/skills/website-schema-builder
-- @.claude/skills/eeat-content-writer
-- @.claude/skills/hmm-behavioral-science-copywriting
-- @.claude/skills/form-building
+- @.claude/skills/frontend-design/SKILL.md
+- @.claude/skills/web-accessibility/SKILL.md
+- @.claude/skills/laws-of-ux/SKILL.md
+- @.claude/skills/website-schema-builder/SKILL.md
+- @.claude/skills/eeat-content-writer/SKILL.md
+- @.claude/skills/hmm-behavioral-science-copywriting/SKILL.md
+- @.claude/skills/form-building/SKILL.md
 
 ---
 
@@ -275,7 +275,7 @@ Follow this sequence for every new website project:
 
 These skills are intentionally excluded from the Required Skills list at the top of this file to keep build-phase context lean. Load them only at the specific trigger points named below — never proactively at session start, and never as part of the upfront `@`-import block.
 
-- **`.claude/skills/google-ai-search-optimization.skill`** — Load at Build Sequence step 14 (final AI Search audit), or whenever the user explicitly asks about AI Overviews, AI Mode, AEO, GEO, generative AI search visibility, query fan-out, RAG retrieval, `llms.txt`, or asks Claude to fact-check or mythbust AEO/GEO advice. The build-phase guardrails from this skill — the mythbusting items in Hard Limitations and the Agentic Readiness subsection inside SEO Requirements — are already inlined above, so routine creation work does not require the full skill to be in context.
+- **`.claude/skills/google-ai-search-optimization/SKILL.md`** — Load at Build Sequence step 14 (final AI Search audit), or whenever the user explicitly asks about AI Overviews, AI Mode, AEO, GEO, generative AI search visibility, query fan-out, RAG retrieval, `llms.txt`, or asks Claude to fact-check or mythbust AEO/GEO advice. The build-phase guardrails from this skill — the mythbusting items in Hard Limitations and the Agentic Readiness subsection inside SEO Requirements — are already inlined above, so routine creation work does not require the full skill to be in context.
 
 ---
 

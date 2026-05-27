@@ -172,7 +172,7 @@ When the user needs a deliverable document:
 
 ---
 
-© 2027 Hammonds Media & Marketing (HMM). Proprietary and confidential.
+© 2026 Hammonds Media & Marketing (HMM). Proprietary and confidential.
 This document may not be reproduced, shared, or used outside of
 HMM-authorized projects without prior written consent.
 Contact: [hello@hmm.agency](mailto:hello@hmm.agency)
