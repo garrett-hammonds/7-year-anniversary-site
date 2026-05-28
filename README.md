@@ -52,11 +52,19 @@ ISR for blog content, dynamic for forms.
 
 ```
 .
-├── README.md                  This file
+├── README.md                            This file
+├── .github/
+│   └── workflows/
+│       └── validate-claude-config.yml   CI check — fails on a broken .claude reference
 └── .claude/
-    ├── CLAUDE.md              Build contract — rules every site must follow
-    ├── project-brief.md       Per-project brief (replace before building)
-    └── skills/                Skill library (see below)
+    ├── CLAUDE.md                        Build contract — rules every site must follow
+    ├── settings.json                    Registers the SessionStart validation hook
+    ├── project-brief.md                 Per-project brief (replace before building)
+    ├── hooks/
+    │   └── session-start.sh             Runs the config validator when a session opens
+    ├── scripts/
+    │   └── validate-claude-config.mjs   Verifies every @-import and skill reference resolves
+    └── skills/                          Skill library (see below)
 ```
 
 ---
@@ -73,6 +81,29 @@ ISR for blog content, dynamic for forms.
 | `hmm-behavioral-science-copywriting` | Marketing copy grounded in HMM's behavioral science vault |
 | `form-building` | Wires contact forms to a hosted endpoint with anti-spam and UTM attribution capture |
 | `google-ai-search-optimization` | Audits pages for AI Overviews / AI Mode retrieval (trigger-loaded at final review) |
+
+---
+
+## Config integrity gate
+
+The build contract depends on its references resolving — a `@`-import in
+`CLAUDE.md` or a skill that points at a missing file fails silently and the
+guidance simply never loads. `.claude/scripts/validate-claude-config.mjs`
+(dependency-free Node) closes that gap. It confirms every `@`-import and
+`.claude/...` path in `CLAUDE.md`, every `references/` and `assets/` file named
+in each skill's `SKILL.md`, and that each skill folder contains a `SKILL.md`.
+
+It runs at two points:
+
+- **Session start** — the `SessionStart` hook in `.claude/settings.json` runs
+  the validator when a session opens, so a broken reference surfaces in-session
+  before any build work begins. The check is read-only and never aborts the
+  session.
+- **CI** — `.github/workflows/validate-claude-config.yml` runs the same
+  validator on every push to `main` and every pull request, so a broken
+  reference blocks the merge.
+
+Run it manually anytime with `node .claude/scripts/validate-claude-config.mjs`.
 
 ---
 
