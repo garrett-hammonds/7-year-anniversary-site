@@ -90,6 +90,29 @@ Every client's site uses the same code; only `NEXT_PUBLIC_FORMSPREE_ENDPOINT` ch
 
 For provider swaps (Formspree → Resend → self-hosted), only the `handleSubmit` body changes. See `references/providers.md`.
 
+## Static HTML variant (GitHub Pages stack)
+
+The `.tsx` templates above target Next.js. For the **static-HTML / GitHub Pages**
+stack, use the vanilla port in `templates/static/` instead — same attribution
+model, honeypot, hidden-field set, and last-touch logic, no framework:
+
+- `templates/static/contact-form.html` — progressively-enhanced form. Its
+  `action`/`method` POST to the endpoint so it works with JavaScript disabled;
+  the honeypot and the eight hidden tracking inputs are named exactly as the
+  Next.js template.
+- `templates/static/attribution.js` — vanilla equivalent of `AttributionTracker`
+  plus the populate/submit logic: idle-time last-touch capture to `localStorage`,
+  hidden-field population (URL first, stored fallback), and an AJAX `fetch` submit
+  with `Accept: application/json` that swaps in the inline success/error regions.
+
+Build steps for the static variant: copy both files into the site, set the form
+`action` to the real endpoint (ask if the brief does not supply it), include
+`attribution.js` with `<script defer>`, and verify the same way as below
+(visit with UTM params → check `localStorage` → inspect populated hidden inputs
+→ submit → confirm the provider received all fields). Everything in **Things to
+NOT do** applies here too, except the React-specific notes (controlled inputs,
+state libraries) — the static form is uncontrolled by nature.
+
 ## References
 
 - `references/attribution-model.md` — last-touch vs first-touch rationale + storage payload shape

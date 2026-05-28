@@ -7,8 +7,8 @@
 //
 // Checks:
 //   1. Every @-import and every `.claude/...` file path in CLAUDE.md resolves.
-//   2. Every `references/<file>` and `assets/<file>` mentioned in a skill's
-//      SKILL.md exists relative to that skill's directory.
+//   2. Every `references/<file>`, `assets/<file>`, and `templates/<file>`
+//      mentioned in a skill's SKILL.md exists relative to that skill's directory.
 //   3. Every directory under .claude/skills/ contains a SKILL.md.
 //
 // Usage: node validate-claude-config.mjs [repoRoot] [--verbose]
@@ -68,7 +68,7 @@ if (!isDir(skillsDir)) {
     }
     const body = readFileSync(skillMd, "utf8");
     const seen = new Set();
-    for (const m of body.matchAll(/(?:references|assets)\/[A-Za-z0-9._/-]+/g)) {
+    for (const m of body.matchAll(/(?:references|assets|templates)\/[A-Za-z0-9._/-]+/g)) {
       const token = trimTrailingPunct(m[0]);
       if (seen.has(token)) continue;
       seen.add(token);
