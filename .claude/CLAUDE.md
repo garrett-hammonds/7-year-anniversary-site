@@ -129,7 +129,24 @@ Reference the frontend-design skill for full guidance. Core rules:
 
 ## Component Primitives Gallery
 
-Build the interface from a single set of reusable **primitives** — small, self-contained components (button, link, input, select, textarea, checkbox/radio, card, badge/tag, alert, modal, accordion, tabs, tooltip, breadcrumb, pagination, avatar, and similar base elements) — and assemble those primitives into one **primitives gallery** so the entire build composes from a consistent, reusable set instead of one-off markup repeated page to page.
+Build the interface from a single set of reusable **primitives** — small, self-contained components — and assemble those primitives into one **primitives gallery** so the entire build composes from a consistent, reusable set instead of one-off markup repeated page to page.
+
+Organize the gallery into the following categories. Build the primitives within a category that the build actually uses — do not pad the gallery with primitives no page consumes — but every primitive that is used must live in its category here:
+
+- **Foundations** — the design-token layer the rest of the gallery consumes: color palette and semantic color roles, typographic scale, spacing scale, radius, shadow/elevation, breakpoints, and z-index.
+- **Brand** — brand-identity elements: logo and logo lockups, wordmark, favicon/app-icon set, brand iconography, and any brand-locked color or pattern treatments.
+- **Buttons** — every action trigger: primary, secondary, tertiary/ghost, destructive, icon-only, and link-style buttons, plus button groups and loading/disabled states.
+- **Inputs** — free-entry fields: text input, textarea, number, email, password, search, date/time pickers, file upload, and their label, helper-text, and error/invalid states.
+- **Selections** — choose-from-options controls: select/dropdown, multi-select, combobox, checkbox, radio group, toggle/switch, slider, and segmented control.
+- **Badges** — small status and metadata markers: status badges, tags/chips, counts, pills, and notification dots.
+- **Surfaces** — containers that hold content: cards, panels, sheets, modals/dialogs, popovers, drawers, and accordions.
+- **Lists** — repeating-item structures: ordered and unordered lists, description lists, data tables, definition rows, and list/grid item layouts.
+- **Navigations** — wayfinding components: top nav/header, footer nav, sidebar, breadcrumbs, tabs, pagination, and anchor/jump links.
+- **Feedback** — system-status communication: alerts/banners, inline validation messages, toasts/snackbars, progress indicators, spinners, skeletons, and empty states.
+- **Charts** — data-visualization primitives: bar, line, area, pie/donut, stat/metric tiles, sparklines, and their legends and axes.
+- **Options** — preference and configuration controls: settings rows, option toggles, preference groups, and menu/action lists.
+- **Pick Details** — detail-selection controls tied to a choice: quantity steppers, variant/option pickers, size and color swatches, date-range and calendar selectors.
+- **Discovery** — find-and-browse components: search bar, filters and facets, sort controls, autocomplete/typeahead, and result cards.
 
 **Scope:** Applies to every build type and stack **except** a single-page site built on the static-HTML (vanilla) stack — a one-page hand-authored output does not justify a separate component library. Every other combination builds the gallery: full websites and campaign landing pages on either stack, and single-page sites on Next.js. If you are unsure whether a build falls inside this scope, the test is simple — if components are reused across more than one page or view, build the gallery.
 
