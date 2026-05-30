@@ -127,6 +127,22 @@ Reference the frontend-design skill for full guidance. Core rules:
 
 ---
 
+## Component Primitives Gallery
+
+Build the interface from a single set of reusable **primitives** — small, self-contained components (button, link, input, select, textarea, checkbox/radio, card, badge/tag, alert, modal, accordion, tabs, tooltip, breadcrumb, pagination, avatar, and similar base elements) — and assemble those primitives into one **primitives gallery** so the entire build composes from a consistent, reusable set instead of one-off markup repeated page to page.
+
+**Scope:** Applies to every build type and stack **except** a single-page site built on the static-HTML (vanilla) stack — a one-page hand-authored output does not justify a separate component library. Every other combination builds the gallery: full websites and campaign landing pages on either stack, and single-page sites on Next.js. If you are unsure whether a build falls inside this scope, the test is simple — if components are reused across more than one page or view, build the gallery.
+
+- Build each primitive **once**, defining all of its variants and states in one place — default, hover, focus, active, disabled, error/invalid, and loading where relevant — then consume that primitive everywhere the element appears. Do not hand-author the same element twice.
+- Drive every primitive from the Style Guide design tokens (CSS variables for color, typography, spacing, radius, shadow) so a single token change restyles the whole gallery and the whole build at once.
+- Surface the gallery as a real, viewable artifact, not an internal abstraction (mechanism per stack):
+  - **Next.js:** keep the primitives in the `/components` library folder and render them on a dedicated `/style-guide` (or `/primitives`) route that displays each primitive with its full set of variants and states.
+  - **Static HTML:** render the primitives inside the `styleguide.html` page next to the design tokens. The static stack already mandates `styleguide.html` for full-website builds; produce it for an in-scope campaign build as well so the primitives have a home.
+- Apply each primitive's accessibility contract once, at the primitive level — accessible name and role, keyboard operability, visible focus state — so every consumer inherits it automatically.
+- Every primitive must clear the universal color-contrast build gate in **all** of its interactive states, not only its default state.
+
+---
+
 ## Universal Global Elements
 
 Include on every build, regardless of mode or stack (implementation mechanism per stack doc):
@@ -163,7 +179,7 @@ Follow this sequence for every build:
 2. Read all skill files listed in the Required Skills section above.
 3. Review the project brief (company info, style variables, optional inputs, any custom parameters).
 4. Confirm the section/page architecture from the loaded mode doc — add or remove only if the brief explicitly instructs it.
-5. Build component-by-component, starting with the design system and Style Guide variables.
+5. Build component-by-component, starting with the design system and Style Guide variables. For every build in scope (see Component Primitives Gallery — all builds except a single-page static-HTML site), build the reusable primitives first and assemble them into the primitives gallery before composing page-level layouts.
 6. Apply the stack doc's engineering rules (rendering, structure, metadata mechanism) before writing page-level code.
 7. Apply accessibility rules to every component before marking it complete.
 8. Apply Laws of UX to every layout decision.
