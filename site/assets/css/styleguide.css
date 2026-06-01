@@ -14,13 +14,13 @@
   --blue:    #124e78;   /* Yale Blue — interactive + dark ground */
   --blue-hi: #0e3e60;   /* darker blue — hover/active */
   --blue-lo: #0b3252;   /* deepest blue — active */
-  --cream:   #f0f0c9;   /* Cream — page background */
+  --cream:   #f0f0c9;   /* Cream — warm muted text on dark grounds only */
   --cream-soft: #faf8e6; /* lighter cream — cards on color grounds */
   --rose:    #b72d60;   /* darker peony — legible pink for TEXT (5.06:1 on cream) */
   --rose-hi: #a82557;
 
   /* ---- Surfaces ---- */
-  --color-bg:            var(--cream);
+  --color-bg:            #ffffff;     /* page background — plain white */
   --color-surface:       #ffffff;     /* white cards — walnut 9.89:1 */
   --color-surface-warm:  var(--cream-soft);
   --color-surface-2:     #f7e7c2;     /* warm gold-tinted band */
@@ -121,11 +121,6 @@ body {
   line-height: 1.65;
   color: var(--color-ink);
   background-color: var(--color-bg);
-  /* Soft warm atmosphere rather than a flat white field */
-  background-image:
-    radial-gradient(1200px 600px at 85% -5%, rgba(242, 187, 5, 0.12), transparent 60%),
-    radial-gradient(900px 700px at -10% 8%, rgba(227, 99, 151, 0.10), transparent 55%);
-  background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
@@ -194,6 +189,19 @@ a:hover { color: var(--color-link-hover); }
 .section--blue h2, .section--blue h3 { color: var(--color-on-blue); }
 .section--ink .section-title,
 .section--ink h2, .section--ink h3 { color: var(--color-on-ink); }
+.section--peony .section-title,
+.section--peony .eyebrow { color: #ffffff; }
+
+/* Cards keep their own dark-on-light text even on colored section grounds.
+   (Higher specificity than the section-ground heading overrides above, so a
+   white card title never inherits the section's white-on-dark color.) */
+.section--blue .card__title,
+.section--ink .card__title,
+.section--peony .card__title,
+.card .card__title { color: var(--color-ink); }
+.section--blue .card__text,
+.section--peony .card__text,
+.card .card__text { color: var(--color-muted); }
 
 /* Accessible-only text */
 .visually-hidden {
