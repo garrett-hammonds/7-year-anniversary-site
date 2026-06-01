@@ -1,0 +1,11 @@
+{
+  "name": "garrett-grace-seven-years",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A static single-page seventh-anniversary tribute site for Grace Hammonds. Deployed to GitHub Pages from site/.",
+  "scripts": {
+    "contrast": "node scripts/contrast-check.mjs",
+    "contrast:coverage": "node scripts/contrast-coverage.mjs"
+  },
+  "license": "UNLICENSED"
+}
