@@ -1,0 +1,77 @@
+{
+  "cssFiles": ["site/assets/css/styleguide.css"],
+  "tokens": {},
+  "coverage": {
+    "sources": ["site/assets/css", "site/index.html"],
+    "ignoreTokens": ["--peony"],
+    "failOnUncovered": false
+  },
+  "pairs": [
+    { "name": "body / cream",            "fg": "var(--color-ink)",        "bg": "var(--color-bg)" },
+    { "name": "heading / cream",         "fg": "var(--color-heading)",    "bg": "var(--color-bg)",      "large": true },
+    { "name": "muted / cream",           "fg": "var(--color-muted)",      "bg": "var(--color-bg)" },
+    { "name": "link / cream",            "fg": "var(--color-link)",       "bg": "var(--color-bg)" },
+    { "name": "link :hover / cream",     "fg": "var(--color-link-hover)", "bg": "var(--color-bg)" },
+    { "name": "eyebrow rose / cream",    "fg": "var(--rose)",             "bg": "var(--color-bg)" },
+    { "name": "error / cream",           "fg": "var(--color-error)",      "bg": "var(--color-bg)" },
+    { "name": "focus ring / cream",      "fg": "var(--color-focus)",      "bg": "var(--color-bg)",      "ui": true },
+
+    { "name": "body / white",            "fg": "var(--color-ink)",        "bg": "var(--color-surface)" },
+    { "name": "muted / white",           "fg": "var(--color-muted)",      "bg": "var(--color-surface)" },
+    { "name": "eyebrow rose / white",    "fg": "var(--rose)",             "bg": "var(--color-surface)" },
+    { "name": "error / white",           "fg": "var(--color-error)",      "bg": "var(--color-surface)" },
+
+    { "name": "card title / white",      "fg": "var(--color-ink)",        "bg": "var(--color-surface)" },
+    { "name": "promise dt rose / white", "fg": "var(--rose)",             "bg": "var(--color-surface)" },
+
+    { "name": "primary btn label",       "fg": "var(--color-on-btn)",     "bg": "var(--color-btn)" },
+    { "name": "primary btn :hover",      "fg": "var(--color-on-btn)",     "bg": "var(--color-btn-hover)" },
+    { "name": "primary btn :active",     "fg": "var(--color-on-btn)",     "bg": "var(--color-btn-active)" },
+    { "name": "primary btn :disabled",   "fg": "var(--color-on-btn)",     "bg": "var(--color-btn-disabled)" },
+    { "name": "secondary btn label",     "fg": "var(--color-on-btn-2)",   "bg": "var(--color-btn-2)" },
+    { "name": "secondary btn :hover",    "fg": "var(--color-on-btn-2)",   "bg": "var(--color-btn-2-hover)" },
+    { "name": "ghost btn border / cream","fg": "var(--blue)",             "bg": "var(--color-bg)",      "ui": true },
+
+    { "name": "input text / field",      "fg": "var(--color-ink)",        "bg": "var(--color-input-bg)" },
+    { "name": "placeholder / field",     "fg": "var(--color-placeholder)","bg": "var(--color-input-bg)" },
+    { "name": "input border / field",    "fg": "var(--color-border-strong)","bg": "var(--color-input-bg)", "ui": true },
+
+    { "name": "badge / surface-2",       "fg": "var(--color-ink)",        "bg": "var(--color-surface-2)" },
+    { "name": "badge--gold",             "fg": "var(--walnut)",           "bg": "var(--gold)" },
+    { "name": "badge--blue",             "fg": "#ffffff",                 "bg": "var(--blue)" },
+    { "name": "badge--rose",             "fg": "#ffffff",                 "bg": "var(--rose)" },
+
+    { "name": "blue: heading",           "fg": "var(--color-on-blue)",      "bg": "var(--color-blue-ground)", "large": true },
+    { "name": "blue: lead",              "fg": "var(--color-on-blue-muted)","bg": "var(--color-blue-ground)" },
+    { "name": "blue: eyebrow gold",      "fg": "var(--color-gold-on-blue)", "bg": "var(--color-blue-ground)" },
+    { "name": "blue: focus ring gold",   "fg": "var(--color-focus-on-dark)","bg": "var(--color-blue-ground)", "ui": true },
+    { "name": "blue: note stamp gold",   "fg": "var(--color-gold-on-blue)", "bg": "var(--color-blue-ground)" },
+
+    { "name": "peony: heading white",    "fg": "#ffffff",                 "bg": "var(--peony)",         "large": true },
+    { "name": "peony: eyebrow white",    "fg": "#ffffff",                 "bg": "var(--peony)",         "large": true },
+    { "name": "hero stamp text white",   "fg": "#ffffff",                 "bg": "var(--peony)",         "large": true },
+
+    { "name": "gold: heading walnut",    "fg": "var(--walnut)",           "bg": "var(--gold)" },
+    { "name": "gold: eyebrow blue",      "fg": "var(--blue)",             "bg": "var(--gold)" },
+    { "name": "gold: track label",       "fg": "var(--walnut)",           "bg": "var(--color-surface)" },
+    { "name": "gold: track border ui",   "fg": "var(--walnut)",           "bg": "var(--color-surface)", "ui": true },
+
+    { "name": "tl-year blue chip",       "fg": "#ffffff",                 "bg": "var(--blue)" },
+    { "name": "tl-year rose chip",       "fg": "#ffffff",                 "bg": "var(--rose)" },
+    { "name": "tl-year gold chip",       "fg": "var(--walnut)",           "bg": "var(--gold)" },
+    { "name": "tl-year peony chip",      "fg": "#ffffff",                 "bg": "var(--peony)",         "large": true },
+
+    { "name": "love icon on peony ui",   "fg": "#ffffff",                 "bg": "var(--peony)",         "ui": true },
+    { "name": "love icon on gold ui",    "fg": "var(--walnut)",           "bg": "var(--gold)",          "ui": true },
+    { "name": "love icon on blue ui",    "fg": "#ffffff",                 "bg": "var(--blue)",          "ui": true },
+
+    { "name": "success alert label",     "fg": "var(--color-on-success)", "bg": "var(--color-success-ground)" },
+    { "name": "success check gold ui",   "fg": "var(--gold)",             "bg": "var(--color-success-ground)", "ui": true },
+
+    { "name": "footer line cream",       "fg": "var(--color-on-ink-muted)","bg": "var(--color-ink-ground)" },
+    { "name": "footer word white",       "fg": "var(--color-on-ink)",      "bg": "var(--color-ink-ground)" },
+    { "name": "footer heart peony ui",   "fg": "var(--peony)",             "bg": "var(--color-ink-ground)", "ui": true },
+
+    { "name": "gallery caption / scrim", "fg": "#ffffff",                  "bg": "#231606" }
+  ]
+}
